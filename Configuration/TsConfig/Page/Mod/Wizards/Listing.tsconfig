@@ -1,0 +1,28 @@
+mod.wizards.newContentElement.wizardItems {
+  plugins {
+    elements {
+      lisztcatalograisonne_worklisting {
+        iconIdentifier = content-text
+        title = LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang.xlf:listing_title
+        description = LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang.xlf:listing_description
+        tt_content_defValues {
+          CType = list
+          list_type = lisztcatalograisonne_worklisting
+        }
+      }
+    }
+  }
+  common {
+    elements {
+      lisztcatalograisonne_worklisting {
+        iconIdentifier = content-text
+        title = LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang.xlf:listing_title
+        description = LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang.xlf:listing_description
+        tt_content_defValues {
+          CType = lisztcatalograisonne_worklisting
+        }
+      }
+    }
+    show := addToList(lisztcatalograisonne_worklisting)
+  }
+}

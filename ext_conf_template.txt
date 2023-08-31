@@ -1,0 +1,8 @@
+# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.elasticWorkIndexName
+elasticWorkIndexName = work
+# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.elasticSourceIndexName
+elasticSourceIndexName = source
+# cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
+mermeidUrl =
+# cat=RISM; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
+marcFileFolder = Marc_Dateien

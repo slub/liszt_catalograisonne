@@ -1,0 +1,23 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+  Slub\LisztCatalograisonne\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+  Slub\LisztCatalograisonne\Classes\Controller\WorkController:
+    tags:
+      - backend.controller
+  Slub\LisztCatalograisonne\Command\IndexWorkCommand:
+    tags:
+      -
+        name: console.command
+        command: 'liszt-catalograisonne:index-work'
+        description: 'Create elasticsearch index from work document'
+  Slub\LisztCatalograisonne\Command\IndexSourceCommand:
+    tags:
+      -
+        name: console.command
+        command: 'liszt-catalograisonne:index-source'
+        description: 'Create elasticsearch index from RISM source document'

@@ -1,0 +1,22 @@
+{
+    "name": "slub/liszt-catalograisonne",
+    "description": "presentation system for the Franz Liszt catalog raisonné project",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^11.5",
+        "slub/liszt-common": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slub\\LisztCatalograisonne\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "liszt_catalograisonne"
+        }
+    }
+}
