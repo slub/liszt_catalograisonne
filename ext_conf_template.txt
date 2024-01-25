@@ -4,5 +4,7 @@ elasticWorkIndexName = work
 elasticSourceIndexName = source
 # cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
 mermeidUrl =
-# cat=RISM; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
+# cat=MerMEId; type=string; label=Ordnername MerMEId-Dateien
+mermeidFileFolder = MerMEId_Dateien
+# cat=RISM; type=string; label=Ordnername MARC-Dateien
 marcFileFolder = Marc_Dateien

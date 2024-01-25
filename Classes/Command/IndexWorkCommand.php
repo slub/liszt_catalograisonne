@@ -21,6 +21,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Slub\LisztCommon\Common\ElasticClientBuilder;
 use Slub\LisztCatalograisonne\Common\MermeidConnection;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class IndexWorkCommand extends Command
@@ -61,10 +62,10 @@ class IndexWorkCommand extends Command
 
     protected function fetchDocument(): void
     {
-        $connection = new MermeidConnection();
-        $document = $connection->getDocument($this->filename);
-        $node = $document->getElementById(self::ROOT_ID);
-        $this->document = $document->saveHTML($node);
+        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+        $defaultStorage = $storageRepository->getDefaultStorage();
+        $folder = $defaultStorage->getFolder($this->extConf['mermeidFileFolder']);
+        $this->document = $folder->getFile($this->filename)->getContents();
     }
 
     protected function commitDocument(): void
@@ -72,7 +73,7 @@ class IndexWorkCommand extends Command
         $index = $this->extConf['elasticWorkIndexName'];
         $params = [
             'index' => $index,
-            'id' => str_replace('.xml', '', $this->filename),
+            'id' => str_replace('.json', '', $this->filename),
             'body' => [
                 'content' => $this->document
             ]
