@@ -101,20 +101,38 @@ class WorkController {
         if (!this.#sources[sourceId]) {
             this.#sources[sourceId] = await this.client.get({index: 'source', id: sourceId});
         }
+        const stringBuilder = (title, text) => text == '' || title == '' ? '' : `<li class="list-group-item"><h4>${title}</h4><p>${text}</p></li>`;
         const source = this.#sources[sourceId]['_source'];
         const composer = source[100][0];
         const composerString = `${composer['a'][0][0]} (${composer['d'][0][0]})`;
         const title = source[240][0];
         const titleString = `${title['a'][0][0]} (${title['n'].map(d => d[0]).join(', ')})`;
-        const descriptions = source[500].map(d => ({title: d['a'][0][0].split(':')[0], text: d['a'][0][0].split(':')[1]}));
+        const descriptions = source[500]?.map(d => ({title: d['a'][0][0].split(':')[0], text: d['a'][0][0].split(':')[1]})) ?? '';
         const descriptionsString = descriptions.map(d => `<li class="list-group-item"><h4>${d.title}</h4><p>${d.text}</p></li>`).join('');
 
         const librarySiglum = source[852][0]['a'][0][0];
         const shelfmark = source[852][0]['c'][0][0];
         const library = source[852][0]['e'][0][0];
+
+        const provenance = source[852][0]['z'][0][0];
+        const provenanceString = stringBuilder('Provenienz', provenance);
+        const sourceTitle = source[245][0]['a'][0][0];
+        const sourceTitleString = stringBuilder(sourceTitle, 'Titel auf der Quelle');
+        const altTitles = source[246]?.map(d => d['a'][0][0]) ?? [''];
+        const captionTitle = altTitles.filter(d => d.includes('caption title')).at(0) ?? '';
+        const captionTitleString = stringBuilder(captionTitle, 'Titel im Notentext');
+
+        const scoring = source[594]?.filter(d => d['b']).map(d => d['b'][0][0]).join(', ') ?? '';
+        const scoringString = stringBuilder('Besetzung', scoring);
+        const extent = source[300][0]['a'][0][0];
+        const extentString = stringBuilder('Umfang', extent);
+        const mvmt = source['031'][0]['d'].map(d => d[0][0]).join(', ');
+        const mvmtString = stringBuilder('Sätze', mvmt);
+
         const libString = `<h4 class="my-3 source-title"><a href="">+ ${shelfmark}, ${librarySiglum} (${library})</a></h4>`;
 
-        const sourceString = `<div id="${sourceId}" class="source-paragraph">${libString}<ul class="list-group source-list">${descriptionsString}</ul></div>`;
+        const sourceString = `<div id="${sourceId}" class="source-paragraph">${libString}<ul class="list-group source-list">
+            ${sourceTitleString}${captionTitleString}${descriptionsString}${scoringString}${extentString}${mvmtString}${provenanceString}</ul></div>`;
 
         target.append(sourceString);
         const sourceElement = $(`#${sourceId}`);
