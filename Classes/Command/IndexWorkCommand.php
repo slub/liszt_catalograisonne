@@ -33,6 +33,7 @@ class IndexWorkCommand extends Command
     protected $client;
     protected $io;
     protected $document;
+    protected $transformedDocument;
     protected $filename;
     protected $url;
 
@@ -46,9 +47,16 @@ class IndexWorkCommand extends Command
     {
         $this->io->section('Fetching Document');
         $this->fetchDocument();
+        $this->io->section('Transforming Document to JSON');
+        $this->transformDocument();
         $this->io->section('Committing Document');
         $this->commitDocument();
         return 0;
+    }
+
+    protected function transformDocument(): void
+    {
+        $this->transformedDocument = simplexml_load_string($this->document, \SimpleXMLElement::class);
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output) {
@@ -62,10 +70,7 @@ class IndexWorkCommand extends Command
 
     protected function fetchDocument(): void
     {
-        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-        $defaultStorage = $storageRepository->getDefaultStorage();
-        $folder = $defaultStorage->getFolder($this->extConf['mermeidFileFolder']);
-        $this->document = $folder->getFile($this->filename)->getContents();
+        $this->document = GeneralUtility::makeInstanceService('mermeid')->getDocument($this->filename);
     }
 
     protected function commitDocument(): void
@@ -75,7 +80,7 @@ class IndexWorkCommand extends Command
             'index' => $index,
             'id' => str_replace('.json', '', $this->filename),
             'body' => [
-                'content' => $this->document
+                'content' => $this->transformedDocument
             ]
         ];
         $this->client->index($params);
