@@ -3,6 +3,8 @@ elasticWorkIndexName = work
 # cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.elasticSourceIndexName
 elasticSourceIndexName = source
 # cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
-mermeidUrl =
-# cat=RISM; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
+mermeidUrl = liszt-mermeid.slub-dresden.de
+# cat=MerMEId; type=string; label=Ordnername MerMEId-Dateien
+mermeidFileFolder = MerMEId_Dateien
+# cat=RISM; type=string; label=Ordnername MARC-Dateien
 marcFileFolder = Marc_Dateien

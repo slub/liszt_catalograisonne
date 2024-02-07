@@ -21,6 +21,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Slub\LisztCommon\Common\ElasticClientBuilder;
 use Slub\LisztCatalograisonne\Common\MermeidConnection;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class IndexWorkCommand extends Command
@@ -32,6 +33,7 @@ class IndexWorkCommand extends Command
     protected $client;
     protected $io;
     protected $document;
+    protected $transformedDocument;
     protected $filename;
     protected $url;
 
@@ -45,9 +47,16 @@ class IndexWorkCommand extends Command
     {
         $this->io->section('Fetching Document');
         $this->fetchDocument();
+        $this->io->section('Transforming Document to JSON');
+        $this->transformDocument();
         $this->io->section('Committing Document');
         $this->commitDocument();
         return 0;
+    }
+
+    protected function transformDocument(): void
+    {
+        $this->transformedDocument = simplexml_load_string($this->document, \SimpleXMLElement::class);
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output) {
@@ -61,10 +70,7 @@ class IndexWorkCommand extends Command
 
     protected function fetchDocument(): void
     {
-        $connection = new MermeidConnection();
-        $document = $connection->getDocument($this->filename);
-        $node = $document->getElementById(self::ROOT_ID);
-        $this->document = $document->saveHTML($node);
+        $this->document = GeneralUtility::makeInstanceService('mermeid')->getDocument($this->filename);
     }
 
     protected function commitDocument(): void
@@ -72,9 +78,9 @@ class IndexWorkCommand extends Command
         $index = $this->extConf['elasticWorkIndexName'];
         $params = [
             'index' => $index,
-            'id' => str_replace('.xml', '', $this->filename),
+            'id' => str_replace('.json', '', $this->filename),
             'body' => [
-                'content' => $this->document
+                'content' => $this->transformedDocument
             ]
         ];
         $this->client->index($params);
