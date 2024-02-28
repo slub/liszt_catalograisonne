@@ -6,8 +6,8 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^11.5",
-        "typo3/cms-reports": "^11.5",
+        "typo3/cms-core": "^12.5",
+        "typo3/cms-reports": "^12.5",
         "slub/liszt-common": "dev-7-upgrade-to-typo3-v12"
     },
     "autoload": {
