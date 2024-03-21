@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Slub\LisztCatalograisonne\Command;
 
+use Elasticsearch\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,13 +30,13 @@ class IndexWorkCommand extends Command
 
     const ROOT_ID = 'main_content';
 
-    protected $extConf;
-    protected $client;
-    protected $io;
+    protected ExtensionConfiguration $extConf;
+    protected Client $client;
+    protected SymfonyStyle $io;
     protected $document;
     protected $transformedDocument;
-    protected $filename;
-    protected $url;
+    protected string $filename;
+    protected string $url;
 
     protected function configure(): void
     {

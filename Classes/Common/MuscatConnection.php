@@ -16,6 +16,7 @@ class MuscatConnection {
     protected $connection;
     protected $extConf;
     protected $url;
+    protected $path;
 
     public function __construct()
     {
@@ -52,7 +53,7 @@ class MuscatConnection {
         var_dump($query);
         curl_close($connection);
 
-        var_dump($result);
+        //var_dump($result);
 
         //$this->sessionCookie = 
     }
@@ -84,7 +85,7 @@ class MuscatConnection {
         //$this->sessionCookie = 
     }
 
-    public function getDocument(string $documentId): DOMDocument
+    public function getDocument(string $documentId): void
     {
     }
 
