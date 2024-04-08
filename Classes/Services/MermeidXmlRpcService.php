@@ -42,6 +42,7 @@ class MermeidXmlRpcService implements MermeidServiceInterface
 
     public function getDocument(string $filename): string
     {
+        var_dump(array_keys($GLOBALS));die;
         $params = [ self::DATA_PATH . $filename, self::GET_DOCUMENT_PARAMETERS ];
         $post = xmlrpc_encode_request('getDocument', $params);
         curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post);
