@@ -27,10 +27,10 @@ class WorkController extends ClientEnabledController
     const MAIN_TARGET = 'works';
 
     /** @var ResponseFactoryInterface */
-    protected ResponseFactoryInterface $responseFactory;
+    protected $responseFactory;
 
     /** @var StreamFactoryInterface */
-    protected StreamFactoryInterface $streamFactory;
+    protected $streamFactory;
 
     protected string $jsCall;
 
