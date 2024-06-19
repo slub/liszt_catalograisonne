@@ -17,3 +17,9 @@ The catalogue raisonné uses data compiled from different repositories.
 Work data are managed via a local installation of [MerMEId](https://github.com/Edirom/MerMEId).
 Source data are retrieved from [RISM](https://rism.info).
 Bibliographic data are connected using [liszt_bibliography](https://github.com/dikastes/liszt_bibliography).
+
+# Maintainers
+
+If you have any questions or encounter any problems, please do not hesitate to contact us.
+- [Matthias Richter](https://github.com/dikastes)
+- [Thomas Schefter](https://github.com/thomas-sc)
