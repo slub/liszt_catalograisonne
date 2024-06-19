@@ -7,7 +7,7 @@
     ],
     "require": {
         "typo3/cms-core": "^11.5",
-        "slub/liszt-common": "dev-main"
+        "slub/liszt-common": "@dev"
     },
     "autoload": {
         "psr-4": {
