@@ -32,7 +32,6 @@ class MermeidXmlRpcService implements MermeidServiceInterface
 
         $this->handle = curl_init($this->url);
         curl_setopt($this->handle, CURLOPT_HTTPHEADER, self::HTTP_HEADER);
-        //curl_setopt($this->handle, CURLOPT_VERBOSE, true);
         curl_setopt($this->handle, CURLOPT_HEADER, 0);
         curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->handle, CURLOPT_POST, true);
@@ -42,6 +41,10 @@ class MermeidXmlRpcService implements MermeidServiceInterface
 
     public function getDocument(string $filename): string
     {
+        $post = xmlrpc_encode_request('listMethods', []);
+        curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post);
+        var_dump(curl_exec($this->handle));die;
+
         $params = [ self::DATA_PATH . $filename, self::GET_DOCUMENT_PARAMETERS ];
         $post = xmlrpc_encode_request('getDocument', $params);
         curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post);
@@ -55,6 +58,13 @@ class MermeidXmlRpcService implements MermeidServiceInterface
         $post = xmlrpc_encode_request('parse', $params);
         curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post);
         curl_exec($this->handle);
+    }
+
+    public function deleteDocument(string $filename): void
+    {
+        $params = [ self::DATA_PATH . $filename, self::GET_DOCUMENT_PARAMETERS ];
+        $post = xmlrpc_encode_request('getDocument', $params);
+        curl_setopt($this->handle, CURLOPT_POSTFIELDS, $post);
     }
 
 }

@@ -1,10 +1,12 @@
-# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.elasticWorkIndexName
+# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.elasticWorkIndexName
 elasticWorkIndexName = work
-# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.elasticSourceIndexName
+# cat=Elasticsearch; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.elasticSourceIndexName
 elasticSourceIndexName = source
-# cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/Labels.xml:config.mermeidUrl
-mermeidUrl = liszt-mermeid.slub-dresden.de
-# cat=MerMEId; type=string; label=Ordnername MerMEId-Dateien
+# cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.mermeidUrl
+mermeidUrl = https://mermeid.edirom.de
+# cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.mermeidPwd
+mermeidPwd = mermeid
+# cat=MerMEId; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.mermeidFolder
 mermeidFileFolder = MerMEId_Dateien
-# cat=RISM; type=string; label=Ordnername MARC-Dateien
+# cat=RISM; type=string; label=LLL:EXT:liszt_catalograisonne/Resources/Private/Language/locallang_be.xlf:config.marcFolder
 marcFileFolder = Marc_Dateien

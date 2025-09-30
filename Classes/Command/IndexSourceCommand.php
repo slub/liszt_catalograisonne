@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Slub\LisztCatalograisonne\Command;
 
+use Elasticsearch\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,12 +34,14 @@ class IndexSourceCommand extends Command
     const DEFAULT_HOST = 'localhost';
     const DEFAULT_PORT = 8080;
 
-    protected $extConf;
-    protected $client;
-    protected $io;
+    protected ExtensionConfiguration $extConf;
+    protected Client $client;
+    protected SymfonyStyle $io;
     protected $document;
-    protected $rismId;
-    protected $url;
+    protected string $rismId;
+    protected string $url;
+    protected string $filename;
+    protected array $parsedDocument;
 
     protected function configure(): void
     {
