@@ -6,21 +6,7 @@
 			<trans-unit id="config.elasticWorkIndexName" resname="elasticWorkIndexName">
 				<source>Name of the work index</source>
 			</trans-unit>
-			<trans-unit id="config.elasticSourceIndexName" resname="elasticSourceIndexName">
-				<source>Name of the source index</source>
-			</trans-unit>
-			<trans-unit id="config.mermeidUrl" resname="mermeidUrl">
-				<source>URL for MerMEId</source>
-			</trans-unit>
-			<trans-unit id="config.mermeidPwd" resname="mermeidPwd">
-				<source>Password for MerMEId</source>
-			</trans-unit>
-			<trans-unit id="config.mermeidFolder" resname="mermeidFolder">
-				<source>Folder of MerMEId files</source>
-			</trans-unit>
-			<trans-unit id="config.marcFolder" resname="marcFolder">
-				<source>Folder of MARC files</source>
-			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
