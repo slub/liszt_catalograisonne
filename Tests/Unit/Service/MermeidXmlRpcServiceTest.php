@@ -20,11 +20,11 @@ final class MermeidXmlRpcServiceTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /*
+    /**
      * @test
      */
-    protected function documentCanBeStoredAndRetrievedFromMermeidInstance(): void
+    public function documentCanBeStoredAndRetrievedFromMermeidInstance(): void
     {
-        $this->subject->getDocument('');
+        $this->markTestIncomplete('MermeidXmlRpcService::getDocument() is unfinished (dead code after debug var_dump/die, never calls init()) and needs a live Mermeid instance to test against.');
     }
 }

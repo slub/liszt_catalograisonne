@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Slub\LisztCatalograisonne\Command;
 
-use Elasticsearch\Client;
+use Elastic\Elasticsearch\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
